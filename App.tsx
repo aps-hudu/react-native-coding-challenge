@@ -66,6 +66,25 @@ const FetchDataComponent = () => {
     </View>
   );
 };
+const data = Array.from({length: 1000}, (_, i) => ({
+  id: i,
+  name: `Item ${i}`,
+}));
+
+const ListScreen = () => {
+  return (
+    <View>
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
+          <View style={{padding: 10, borderBottomWidth: 1}}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </View>
+  );
+};
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -80,11 +99,17 @@ function App(): React.JSX.Element {
       <ScrollView>
         <Text style={styles.title}>React Native Challenges</Text>
         <Text style={styles.subtitle}>
-          Challenge 1: Fetch Data from api and load items.
+          Challenge 1: The app is lagging when rendering a large list of items.
+          Find and fix the issue.
+        </Text>
+        <ListScreen />
+
+        <Text style={styles.subtitle}>
+          Challenge 2: Fetch Data from api and load items.
         </Text>
         <FetchDataComponent />
 
-        <Text style={styles.subtitle}>Challenge 2: Dynamic Image Carousel</Text>
+        <Text style={styles.subtitle}>Challenge 3: Dynamic Image Carousel</Text>
         <ImageCarousel />
       </ScrollView>
     </SafeAreaView>
